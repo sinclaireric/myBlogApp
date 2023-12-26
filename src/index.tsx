@@ -3,9 +3,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 
-import { APIProvider } from './src/api';
-import { hydrateAuth } from './src/core';
-import { RootNavigator } from './src/navigation';
+import { APIProvider } from './api';
+import { hydrateAuth } from './core';
+import { RootNavigator } from './navigation';
 
 hydrateAuth();
 
