@@ -3,8 +3,9 @@ import { getItem, removeItem, setItem } from '../storage';
 const TOKEN = 'token';
 
 export type TokenType = {
-  access: string;
-  refresh: string;
+  authToken: string;
+  apiToken?: string;
+  expires?: number;
 };
 
 export const getToken = () => getItem<TokenType>(TOKEN);
