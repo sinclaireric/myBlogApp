@@ -18,16 +18,8 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
 
-  const borderColor = error
-    ? 'border-danger-600'
-    : isFocussed
-    ? 'border-slate-200'
-    : 'border-slate-50';
-
  
-  const bgColor = error
-    ? 'bg-danger-50'
-    : 'bg-[#F5F4F8]';
+
   return (
     <View >
       <TextInput
@@ -64,7 +56,7 @@ const styles = StyleSheet.create({
     borderColor:'#cccccc',
     borderRadius:4,
     width:'100%',
-    height:48
+    paddingVertical:8
   }
  
 });

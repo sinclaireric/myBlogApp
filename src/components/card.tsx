@@ -1,31 +1,48 @@
 import React from 'react';
 
-import type { Post } from '../../api';
-import { Image, Pressable, Text, View } from 'react-native';
+import type { Post } from '../api/articles/types';
+import { Image, Pressable, Text, View,StyleSheet } from 'react-native';
 
 type Props = Post & { onPress?: () => void };
 
-export const Card = ({ title, body, onPress = () => {} }: Props) => {
+export const Card = ({ textContent, authorV2,publishedAt, onPress = () => {} }: Props) => {
   return (
     <Pressable
-      className="m-2 block overflow-hidden rounded-xl  bg-neutral-200 p-2 shadow-xl dark:bg-charcoal-900"
+      
       onPress={onPress}
     >
-      <Image
-        className="h-56 w-full object-cover "
-        source={{
-          uri: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-        }}
-      />
+     
 
-      <View>
-        <Text variant="md" numberOfLines={1} className="font-bold">
-          {title}
+      <View style={styles.card}>
+        <Text style={styles.content}>
+          {textContent}
         </Text>
-        <Text variant="xs" numberOfLines={3}>
-          {body}
+        <Text style={styles.sub}>
+          {authorV2.displayName}
+        </Text>
+        <Text style={styles.sub}>
+          {publishedAt}
         </Text>
       </View>
     </Pressable>
   );
 };
+
+
+const styles = StyleSheet.create({
+  card: {
+    borderWidth:1,
+    marginBottom:20,
+    borderColor:'#cccccc',
+    padding: 15,
+    borderRadius:8
+  },
+  content:{
+    fontSize:16
+  },
+
+  sub:{
+    fontSize:10
+  }
+
+})
