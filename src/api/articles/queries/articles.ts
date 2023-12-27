@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ARTICLES = gql`
-query Posts($pagination: OffsetPaginationInput) {
-  posts(pagination: $pagination) {
+query Posts($order: Order,$pagination: OffsetPaginationInput) {
+  posts(order:$order,pagination: $pagination) {
     pagination {
       count
       limit
@@ -38,7 +38,34 @@ query Posts($pagination: OffsetPaginationInput) {
           }
         }
       }
+      id
     }
+  }
+}
+`;
+
+
+
+export const GET_ARTICLE = gql`
+query Post($input: IdentifiedInput!) {
+  post(input: $input) {
+    authorV2 {
+      ... on MinimalistOrganisme {
+        displayName
+        avatar {
+          url
+        }
+      }
+      ... on MinimalistUser {
+        displayName
+        email
+        avatar {
+          url
+        }
+      }
+    }
+    publishedAt
+    textContent
   }
 }
 `;
