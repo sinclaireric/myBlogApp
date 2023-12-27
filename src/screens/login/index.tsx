@@ -14,7 +14,7 @@ export const Login = () => {
 
 
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
-  console.log(data)
+
 
     login({
       variables: {
@@ -41,3 +41,5 @@ export const Login = () => {
     </>
   );
 };
+
+

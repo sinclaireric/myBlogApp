@@ -1,5 +1,11 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { useAuth } from '../../core/auth';
+import { getToken } from '../../core/auth/utils';
+
+const token = getToken();
+
+console.log(token)
 
 
 
@@ -8,10 +14,11 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
+  
   return {
     headers: {
       ...headers,
-      authorization: '',
+      'authorization': token ? `Bearer ${token.authToken}` : '',
       'X-DCE-PLATFORM':'SWIZY'
     },
   };
@@ -19,9 +26,6 @@ const authLink = setContext((_, { headers }) => {
 
 const link = authLink.concat(httpLink);
 
-
-
-const BASE_URL = 'https://api-dev.easycse.net/freya/graphql';
 
 const client = new ApolloClient({
   link,

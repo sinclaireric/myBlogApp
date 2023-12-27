@@ -3,10 +3,10 @@ import { FlashList } from '@shopify/flash-list';
 import React from 'react';
 
 import type { Post } from '../../api';
-import { usePosts } from '../../api';
 import { Text, View } from 'react-native';
 
-import { Card } from './card';
+import { Card } from '../../components';
+import { UserCard } from '../../components/userCard';
 
 export const Feed = () => {
 /*   const { data, isLoading, isError } = usePosts(); */
@@ -28,7 +28,7 @@ export const Feed = () => {
   } */
   return (
     <View >
-     
+     <UserCard />
       <FlashList
         data={[]}
         renderItem={renderItem}

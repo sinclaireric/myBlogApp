@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
-import { useAddPost } from '../../api';
+/* import { useAddPost } from '../../api'; */
 import { Button, View } from 'react-native';
 
 import { ControlInput, showErrorMessage} from '../../components';
@@ -20,11 +20,11 @@ export const AddPost = () => {
   const { control, handleSubmit } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
-  const { mutate: addPost, isLoading } = useAddPost();
+ /*  const { mutate: addPost, isLoading } = useAddPost(); */
 
   const onSubmit = (data: FormType) => {
     console.log(data);
-    addPost(
+   /*  addPost(
       { ...data, userId: 1 },
       {
         onSuccess: () => {
@@ -39,17 +39,17 @@ export const AddPost = () => {
           showErrorMessage('Error adding post');
         },
       }
-    );
+    ); */
   };
   return (
     <View className="flex-1 p-4 ">
-      <ControlledInput
+      <ControlInput
         name="title"
         label="Title"
         control={control}
         testID="title"
       />
-      <ControlledInput
+      <ControlInput
         name="body"
         label="Content"
         control={control}
@@ -57,8 +57,6 @@ export const AddPost = () => {
         testID="body-input"
       />
       <Button
-        label="Add Post"
-        loading={isLoading}
         onPress={handleSubmit(onSubmit)}
         testID="add-post-button"
       />
