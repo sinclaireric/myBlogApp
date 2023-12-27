@@ -65,6 +65,9 @@ query Post($input: IdentifiedInput!) {
       }
     }
     publishedAt
+    capabilities {
+      delete
+    }
     textContent
   }
 }

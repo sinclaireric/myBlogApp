@@ -1,15 +1,36 @@
 import * as React from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { useAuth } from '../../core';
 import {  StyleSheet, Text, View,StatusBar,Pressable, Image, ActivityIndicator } from 'react-native';
-
+import { LOGOUT } from '../../api/auth/mutations/logout';
 import { GET_PROFILE } from '../../api/profile/queries/profile';
 import { UserCard } from '../../components/userCard';
 
 export const Profile = () => {
   const { loading, error, data } = useQuery(GET_PROFILE);
+  const [logout, { data:dataLogOut, loading:loadingLogOut, error:errorLogOut }] = useMutation(LOGOUT);
   const signOut = useAuth.use.signOut();
+
+
+
+  const onLogout = () => {
+
+
+    logout()
+    .then((response) => {
+      // set token if credentials is ok
+      signOut();
+
+    })
+        
+    .catch((error) => {
+      // get mutations errors
+      console.error('Erreur lors de la mutation :', error);
+    });
+
+    
+  };
   
  
   if (loading) return <ActivityIndicator size="large" />;
@@ -23,7 +44,7 @@ export const Profile = () => {
          
           <UserCard />
 
-          <Pressable style={styles.logoutView} onPress={signOut}>
+          <Pressable style={styles.logoutView} onPress={onLogout}>
               <Text style={styles.logoutText}>Deconnexion</Text>  
           </Pressable>
          

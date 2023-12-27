@@ -9,3 +9,12 @@ mutation CreatePost($input: PostInput!) {
   }
 }
 `;
+
+
+export const DELETE_ARTICLE = gql`
+mutation DeletePost($input: IdentifiedInput!) {
+  deletePost(input: $input) {
+    id
+  }
+}
+`;
