@@ -1,32 +1,31 @@
 import * as React from 'react';
+import { useQuery } from '@apollo/client';
 
 import { useAuth } from '../../core';
-import {  StyleSheet, Text, View,StatusBar,Pressable } from 'react-native';
+import {  StyleSheet, Text, View,StatusBar,Pressable, Image } from 'react-native';
 
+import { GET_PROFILE } from '../../api/profile/queries/profile';
+import { UserCard } from '../../components/userCard';
 
 export const Profile = () => {
+  const { loading, error, data } = useQuery(GET_PROFILE);
   const signOut = useAuth.use.signOut();
-
+  
+ 
+  if (loading) return <Text>Chargement</Text>;
+  if (error) return <Text>`Error! ${error.message}`</Text>;
+ 
   return (
     <>
-<StatusBar />
+        <StatusBar />
       
         <View style={styles.container}>
          
-          
-          <View style={styles.img} />
-          <Text>
-            Maneng Sinclair
-          </Text>
+          <UserCard />
 
-          <Text>
-            0 articles
-          </Text>
-
-          
-            <Pressable style={styles.logoutView} onPress={signOut}>
-              <Text style={styles.logoutText}> Deconnexion </Text>  
-            </Pressable>
+          <Pressable style={styles.logoutView} onPress={signOut}>
+              <Text style={styles.logoutText}>Deconnexion</Text>  
+          </Pressable>
          
         </View>
       
@@ -67,9 +66,9 @@ const styles = StyleSheet.create({
   },
 
   img: {
-    height:90,
-    width:90,
-    borderRadius:90,
+    height:70,
+    width:70,
+    borderRadius:70,
     backgroundColor:'#cccccc'
   }
 
