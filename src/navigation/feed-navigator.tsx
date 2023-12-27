@@ -7,7 +7,7 @@ import { Pressable, Text } from 'react-native';
 
 export type FeedStackParamList = {
   Feed: undefined;
-  Post: { id: number };
+  Post: { id: sting };
   AddPost: undefined;
 };
 

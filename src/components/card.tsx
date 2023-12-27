@@ -5,7 +5,7 @@ import { Image, Pressable, Text, View,StyleSheet } from 'react-native';
 
 type Props = Post & { onPress?: () => void };
 
-export const Card = ({ textContent, authorV2,publishedAt, onPress = () => {} }: Props) => {
+export const Card = ({ textContent,id, authorV2,publishedAt, onPress = () => {} }: Props) => {
   return (
     <Pressable
       
@@ -20,6 +20,7 @@ export const Card = ({ textContent, authorV2,publishedAt, onPress = () => {} }: 
         <Text style={styles.sub}>
           {authorV2.displayName}
         </Text>
+        
         <Text style={styles.sub}>
           {publishedAt}
         </Text>

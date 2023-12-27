@@ -20,7 +20,8 @@ const [currentPage, setCurrentPage] = useState(1);
       pagination:{
       offset: currentPage,
       limit
-    }
+    },
+    order:'DESC'
     },
   });
 
@@ -39,7 +40,7 @@ const [currentPage, setCurrentPage] = useState(1);
   const loadNextPage = () => {
     fetchMore({
       variables: {
-        page: currentPage + 1,
+        offset: currentPage + 1,
       },
     }).then(() => {
       setCurrentPage(currentPage + 1);
@@ -58,13 +59,13 @@ const [currentPage, setCurrentPage] = useState(1);
   
 
 
-  /* if (isError) {
+   if (error) {
     return (
       <View>
         <Text> Error Loading data </Text>
       </View>
     );
-  } */
+  } 
   return (
 
     <View style={styles.container}>
@@ -83,7 +84,7 @@ const [currentPage, setCurrentPage] = useState(1);
             <ActivityIndicator size="small" />
           ) : (
             <TouchableOpacity onPress={loadNextPage}>
-              <Text style={{ textAlign: 'center', padding: 10 }}>Charger la page suivante</Text>
+              <Text style={{ textAlign: 'center', padding: 10 }}>Page suivante</Text>
             </TouchableOpacity>
           );
         }}
