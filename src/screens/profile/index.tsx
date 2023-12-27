@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useQuery } from '@apollo/client';
 
 import { useAuth } from '../../core';
-import {  StyleSheet, Text, View,StatusBar,Pressable, Image } from 'react-native';
+import {  StyleSheet, Text, View,StatusBar,Pressable, Image, ActivityIndicator } from 'react-native';
 
 import { GET_PROFILE } from '../../api/profile/queries/profile';
 import { UserCard } from '../../components/userCard';
@@ -12,7 +12,7 @@ export const Profile = () => {
   const signOut = useAuth.use.signOut();
   
  
-  if (loading) return <Text>Chargement</Text>;
+  if (loading) return <ActivityIndicator size="large" />;
   if (error) return <Text>`Error! ${error.message}`</Text>;
  
   return (

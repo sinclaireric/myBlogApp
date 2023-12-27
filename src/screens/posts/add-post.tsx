@@ -5,13 +5,12 @@ import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
 /* import { useAddPost } from '../../api'; */
-import { Button, View } from 'react-native';
+import { Button, View, StyleSheet } from 'react-native';
 
 import { ControlInput, showErrorMessage} from '../../components';
 
 const schema = z.object({
-  title: z.string().min(10),
-  body: z.string().min(120),
+  textContent: z.string().min(120),
 });
 
 type FormType = z.infer<typeof schema>;
@@ -42,24 +41,34 @@ export const AddPost = () => {
     ); */
   };
   return (
-    <View className="flex-1 p-4 ">
+    <View style={styles.container} >
+      
       <ControlInput
-        name="title"
-        label="Title"
-        control={control}
-        testID="title"
-      />
-      <ControlInput
-        name="body"
-        label="Content"
+        name="textContent"
+        label="Contenu"
         control={control}
         multiline
+        numberOfLines={6}
+        textAlignVertical="top"
         testID="body-input"
       />
       <Button
+      title='Valider'
         onPress={handleSubmit(onSubmit)}
         testID="add-post-button"
       />
     </View>
   );
 };
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width:'100%',
+  
+    padding: 20,
+  },
+
+});

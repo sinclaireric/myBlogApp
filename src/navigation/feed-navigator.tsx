@@ -17,7 +17,7 @@ const GoToAddPost = () => {
   const { navigate } = useNavigation();
   return (
     <Pressable onPress={() => navigate('AddPost')}>
-      <Text >Create</Text>
+      <Text >Ajouter un article</Text>
     </Pressable>
   );
 };
@@ -27,15 +27,14 @@ export const PostNavigator = () => {
     <Stack.Navigator>
       <Stack.Group
         screenOptions={{
-          // eslint-disable-next-line react/no-unstable-nested-components
           headerRight: () => <GoToAddPost />,
         }}
       >
-        <Stack.Screen name="Feed" component={Feed} />
-        <Stack.Screen name="Post" component={Post} />
+        <Stack.Screen name="Feed" component={Feed} options={({ route }) => ({ title: 'Articles' })} />
+        <Stack.Screen name="Post" component={Post} options={({ route }) => ({ title: 'Article' })} />
       </Stack.Group>
 
-      <Stack.Screen name="AddPost" component={AddPost} />
+      <Stack.Screen name="AddPost"  component={AddPost} options={({ route }) => ({ title: 'Ajouter un article' })} />
     </Stack.Navigator>
   );
 };

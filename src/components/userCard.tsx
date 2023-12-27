@@ -32,20 +32,19 @@ export const UserCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width:'100%',
     alignItems:'center',
     justifyContent: 'center',
-    padding: 40,
+    padding: 4,
+    marginBottom:10
   },
 txt : {
-color:'#aaaaaa',
 fontWeight:"600"
 },
   img: {
-    height:70,
-    width:70,
-    borderRadius:70,
+    height:40,
+    width:40,
+    borderRadius:40,
     backgroundColor:'#cccccc'
   }
 
